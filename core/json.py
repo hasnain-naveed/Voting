@@ -669,6 +669,22 @@ POLLING_STATIONS = [
         "number": "146",
         "name": "PS14",
         "urdu_name": "گورنمنٹ  بوائزپرائمری سکول چک نمبر 5  یو سی سی"
+    },{
+        "number": "147",
+        "name": "PS14",
+        "urdu_name": "unknow1"
+    },{
+        "number": "148",
+        "name": "PS14",
+        "urdu_name": "unknown2"
+    },{
+        "number": "149",
+        "name": "PS14",
+        "urdu_name": "unknow3"
+    },{
+        "number": "150",
+        "name": "PS14",
+        "urdu_name": "unknown4"
     },
 ]
 
