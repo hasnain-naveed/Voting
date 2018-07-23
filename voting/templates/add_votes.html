@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Votes</title>
+    <style>
+        body {
+            width: 100%;
+        }
+
+        h1 {
+            margin-left: 15%;
+        }
+
+        form {
+            width: 50%;
+            margin-left: 20%;
+        }
+
+        .message {
+            display: none;
+            color: green;
+        }
+
+        p {
+            margin-bottom: 30px;
+        }
+
+        input {
+            width: 150px;
+            height: 20px;
+        }
+
+        button {
+            width: 60px;
+            height: 21px;
+        }
+    </style>
+    <script>
+        {% if is_success %}
+            alert("Success");
+        {%endif%}
+
+
+    </script>
+</head>
+<body>
+{% include "links.html" %}
+
+    <h1>New Votes</h1>
+    <div class="message" id="{% if is_success %} show {% endif %}">SUCCESS</div>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+</body>
+</html>

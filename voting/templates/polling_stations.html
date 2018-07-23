@@ -1,0 +1,68 @@
+{{my_filters}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            width: 100%;
+        }
+
+        h1 {
+            margin-left: 15%;
+        }
+
+        table {
+            width: 70%;
+            margin-left: 15%;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        img{
+            width:100px;
+            height: 50px;
+        }
+    </style>
+
+    <script>
+
+    </script>
+
+
+    <meta charset="UTF-8">
+    <title>All candidates</title>
+</head>
+<body>
+{% include "links.html" %}
+
+<div>
+    <h1> PP-141 </h1>
+</div>
+
+<table border="1">
+    <th>نام پولنگ اسٹیشن </th>
+    <th>چوھدری محمود الحق</th>
+    <th>عابد حسین چھٹہ</th>
+    <th>طاھر مسعود</th>
+    <th>صباحت بھٹی</th>
+    <th>تنویر ناصر</th>
+    <th>رانا وکیل</th>
+    <th>نوشین بھٹی</th>
+
+    {% for polling_station_vote in polling_station_votes %}
+        <tr>
+            {% for psv in polling_station_vote %}
+                <td class="votes">{{ psv }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+
+</table>
+
+
+
+</body>
+</html>

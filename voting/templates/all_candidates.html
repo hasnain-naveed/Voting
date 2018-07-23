@@ -1,0 +1,57 @@
+{{my_filters}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            width: 100%;
+        }
+
+        h1 {
+            margin-left: 15%;
+        }
+
+        table {
+            width: 70%;
+            margin-left: 15%;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        img{
+            width:100px;
+            height: 50px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>All candidates</title>
+</head>
+<body>
+{% include "links.html" %}
+
+<div>
+    <h1> PP-141 </h1>
+</div>
+
+
+<table border="1">
+    <th>امیدوار</th>
+    <th>انتخابی نشان</th>
+    <th>کل ووٹ</th>
+    {% for candidate in candidates %}
+    <tr>
+
+        <td> {{ candidate.name }} </td>
+        <td> <img src="static/{{ candidate.sign }}"> </td>
+        <td> {{ candidate.votes }} </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+</body>
+</html>
