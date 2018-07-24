@@ -6,7 +6,7 @@ CANDIDATES = [
         "name": "Ch. Mehmood-ul-Haq",
         "urdu_name": "چوھدری محمود الحق",
         "sign": "lion.png",
-        "image": "lion-img.jpg",
+        "image": "lion-img.jpeg",
     },
     {
         "name": "Abid Hussain Chatta",
