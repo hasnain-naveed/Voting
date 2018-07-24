@@ -20,6 +20,14 @@ def get_urdu_candidate_name(name):
             return candidate.get("urdu_name")
 
 
+def get_lion_votes_string(lion_votes, max_votes, second_higest):
+    if lion_votes == max_votes:
+        vote_string = "{} lead by {}".format(str(lion_votes), str(lion_votes-second_higest))
+    else:
+        vote_string = "{} behind by {}".format(str(lion_votes), str(max_votes-lion_votes))
+    return vote_string
+
+
 def get_urdu_polling_station_name(name):
     for polling_station in POLLING_STATIONS:
         if polling_station.get("number") == name:
