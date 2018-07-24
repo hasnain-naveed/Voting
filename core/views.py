@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from core.json import CANDIDATES, POLLING_STATIONS
-from core.utils import get_urdu_candidate_name, get_urdu_polling_station_name
+from core.utils import get_urdu_candidate_name, get_urdu_polling_station_name, get_lion_votes_string
 from core.serializer import UserSerializer, GroupSerializer
 from core.models import Candidate, PollingStation, PollingStationVotes
 from core.forms import PollingStationVoteForm
@@ -49,20 +49,30 @@ class CandidatesView(APIView):
     template_name = 'all_candidates.html'
 
     def get(self, request):
-        candidates_queryset = Candidate.objects.all().order_by('-votes')
         candidates = []
-        for candidate in candidates_queryset:
-            candidates.append(
-                Candidate(
-                    name=get_urdu_candidate_name(candidate.name),
-                    sign=candidate.sign,
-                    image_name=candidate.image_name,
-                    votes=candidate.votes
-                )
+        lion_votes = 0
+        candidates_queryset = Candidate.objects.all().order_by('-votes')
+        if candidates_queryset.exists():
+            lion_votes = get_lion_votes_string(
+                Candidate.objects.get(sign='lion.png').votes,
+                candidates_queryset[0].votes,
+                candidates_queryset[1].votes
             )
+            candidates = []
+            for candidate in candidates_queryset:
+                if candidate.sign != "lion.png":
+                    candidates.append(
+                        Candidate(
+                            name=get_urdu_candidate_name(candidate.name),
+                            sign=candidate.sign,
+                            image_name=candidate.image_name,
+                            votes=candidate.votes
+                        )
+                    )
         return Response(
             {
-                'candidates': candidates
+                'candidates': candidates,
+                'lion_votes': lion_votes
             }
         )
 

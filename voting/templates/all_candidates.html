@@ -65,7 +65,7 @@
             text-align: center;
             margin-top: 3%;
         }
-        .votes {
+        .bold_class {
             font-size: 20px;
             font-weight: bold;
         }
@@ -87,13 +87,19 @@
     <th>امیدوارکی تصویر</th>
     <th>انتخابی نشان</th>
     <th>کل ووٹ</th>
+    <tr>
+        <td class="bold_class">چوھدری محمود الحق</td>
+        <td> <img class="c_img" src="static/lion-img.jpeg"> </td>
+        <td> <img src="static/lion.png"> </td>
+        <td class="bold_class"> {{ lion_votes }} </td>
+    </tr>
     {% for candidate in candidates %}
     <tr>
 
-        <td> {{ candidate.name }} </td>
+        <td class="bold_class"> {{ candidate.name }} </td>
         <td> <img class="c_img" src="static/{{ candidate.image_name }}"> </td>
         <td> <img src="static/{{ candidate.sign }}"> </td>
-        <td class="votes"> {{ candidate.votes }} </td>
+        <td class="bold_class"> {{ candidate.votes }} </td>
     </tr>
     {% endfor %}
 </table>
