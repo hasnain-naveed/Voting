@@ -21,10 +21,36 @@
             text-align: center;
         }
 
-        img{
+        img {
             width:100px;
             height: 50px;
         }
+
+        .c_img {
+            width:100px;
+            height: 100px;
+        }
+         a {
+            color: black;
+            text-decoration: none;
+            text-decoration: none;
+            font-size: 20px;
+            background-color: lightgrey;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        a:hover {
+            background-color: grey;
+        }
+
+        .tab {
+            font-size: 17px;
+            margin-bottom: 5%;
+            text-align: center;
+            margin-top: 3%;
+        }
+
     </style>
     <meta charset="UTF-8">
     <title>All candidates</title>
@@ -44,7 +70,7 @@
     {% for candidate in candidates %}
     <tr>
 
-        <td> {{ candidate.name }} </td>
+        <td> <div>{{ candidate.name }} </div> <img class="c_img" src="static/{{ candidate.image_name }}"></td>
         <td> <img src="static/{{ candidate.sign }}"> </td>
         <td> {{ candidate.votes }} </td>
     </tr>

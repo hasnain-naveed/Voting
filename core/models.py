@@ -10,6 +10,7 @@ from core.utils import get_urdu_polling_station_name
 class Candidate(TimeStampedModel):
     name = models.CharField(max_length=128, unique=True, null=False, blank=False, verbose_name=_('Candidate Name'))
     sign = models.CharField(max_length=128, unique=True, null=False, blank=False, verbose_name=_('Candidate Sign'))
+    image_name = models.CharField(max_length=128, null=True, blank=True, verbose_name=_('Candidate Imag Name'))
     votes = models.IntegerField(null=True, blank=True, default=0)
 
     def __str__(self):

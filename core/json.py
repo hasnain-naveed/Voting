@@ -6,36 +6,43 @@ CANDIDATES = [
         "name": "Ch. Mehmood-ul-Haq",
         "urdu_name": "چوھدری محمود الحق",
         "sign": "lion.png",
+        "image": "lion-img.jpg",
     },
     {
         "name": "Abid Hussain Chatta",
         "urdu_name": "عابد حسین چھٹہ",
         "sign": "bat.png",
+        "image": "bat-img.jpg",
     },
     {
         "name": "Tahir Masood",
         "urdu_name": "طاھر مسعود",
         "sign": "arrow.png",
+        "image": "arrow-img.jpg",
     },
     {
         "name": "Sabahat Bhatti",
         "urdu_name": "صباحت بھٹی",
         "sign": "rabbit.png",
+        "image": "rabbit-img.jpg",
     },
     {
         "name": "Tanveer Nasir",
         "urdu_name": "تنویر ناصر",
         "sign": "bowl.png",
+        "image": "bowl-img.jpg",
     },
     {
         "name": "Rana Wakeel",
         "urdu_name": "رانا وکیل",
         "sign": "cup.png",
+        "image": "cup-img.jpg",
     },
     {
         "name": "Nausheen Bhatti",
         "urdu_name": "نوشین بھٹی",
         "sign": "crane.png",
+        "image": "crane-img.jpg",
     },
 ]
 

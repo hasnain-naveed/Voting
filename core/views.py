@@ -4,7 +4,6 @@ from core.utils import get_urdu_candidate_name, get_urdu_polling_station_name
 from core.serializer import UserSerializer, GroupSerializer
 from core.models import Candidate, PollingStation, PollingStationVotes
 from core.forms import PollingStationVoteForm
-from django.contrib import messages
 
 from django.shortcuts import render
 from rest_framework.renderers import TemplateHTMLRenderer
@@ -24,6 +23,7 @@ class AddDataView(APIView):
             Candidate.objects.get_or_create(
                 name=candidate.get('name'),
                 sign=candidate.get('sign'),
+                image_name=candidate.get('image'),
                 defaults={
                     "votes": 0
                 },
@@ -56,6 +56,7 @@ class CandidatesView(APIView):
                 Candidate(
                     name=get_urdu_candidate_name(candidate.name),
                     sign=candidate.sign,
+                    image_name=candidate.image_name,
                     votes=candidate.votes
                 )
             )
@@ -71,7 +72,15 @@ class AddVotesView(View):
 
     def get_context(self, is_success=False):
         return {
-            "form": PollingStationVoteForm(),
+            "form": PollingStationVoteForm(initial={
+                'lion': 0,
+                'bat': 0,
+                'arrow': 0,
+                'rabbit': 0,
+                'cup': 0,
+                'bowl': 0,
+                'crane': 0,
+            }),
             "is_success": is_success
         }
 
