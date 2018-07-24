@@ -4,35 +4,87 @@
     <meta charset="UTF-8">
     <title>Add Votes</title>
     <style>
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
         body {
             width: 100%;
+            font-family: sans-serif;
         }
 
         h1 {
-            margin-left: 15%;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         form {
             width: 50%;
-            margin-left: 20%;
+            margin: 0 auto;
+        }
+
+        form p {
+            width: 100%;
+            display: table;
+            margin: 0;
+            table-layout: fixed;
+            border: 1px solid #999;
+        }
+
+        form p > * {
+            padding: 15px;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: left;
+            min-width: 200px;
+        }
+
+        form p > *:first-child {
+            width: 200px;
+            text-align: right;
+            padding-right: 20px;
+        }
+
+        form p > select,
+        form p > input {
+            padding: 0;
+            width: 80%;
+            height: 30px;
+            padding: 5px 10px;
+            margin-top: 10px;
         }
 
         a {
             color: black;
             text-decoration: none;
             text-decoration: none;
-            font-size: 20px;
+            font-size: 18px;
+            border-radius: 5px;
             background-color: lightgrey;
-            padding: 10px;
+            padding: 10px 20px;
             margin: 5px;
         }
 
         a:hover {
+            color: white;
             background-color: grey;
         }
 
+        button {
+            margin: 15px auto 15px;
+            background: #f2f2f2;
+            border: 1px solid #999;
+            border-radius: 5px;
+            padding: 10px 30px;
+            text-transform: uppercase;
+        }
+
         button:hover {
-            background-color: black;
+            color: white;
+            background-color: #757575;
         }
 
         .message {
@@ -49,11 +101,13 @@
             height: 20px;
         }
 
+        .text-center {
+            text-align: center;
+        }
+
         button {
-            width: 100px;
-            height: 30px;
             font-size: 20px;
-            color: gray
+            color: gray;
         }
 
         .tab {
@@ -79,7 +133,9 @@
     <div class="message" id="{% if is_success %} show {% endif %}">SUCCESS</div>
     <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+        <div class="text-center">
+            <button type="submit" class="save btn btn-default">Save</button>
+        </div>
     </form>
 
 </body>
