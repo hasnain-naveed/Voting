@@ -51,6 +51,7 @@ class CandidatesView(APIView):
     def get(self, request):
         candidates = []
         lion_votes = 0
+        total_votes = 0
         candidates_queryset = Candidate.objects.all().order_by('-votes')
         if candidates_queryset.exists():
             lion_votes = get_lion_votes_string(
@@ -60,6 +61,7 @@ class CandidatesView(APIView):
             )
             candidates = []
             for candidate in candidates_queryset:
+                total_votes = total_votes + candidate.votes
                 if candidate.sign != "lion.png":
                     candidates.append(
                         Candidate(
@@ -72,7 +74,8 @@ class CandidatesView(APIView):
         return Response(
             {
                 'candidates': candidates,
-                'lion_votes': lion_votes
+                'lion_votes': lion_votes,
+                'total_votes': total_votes,
             }
         )
 
@@ -159,14 +162,17 @@ class PollingStationView(APIView):
     template_name = 'polling_stations.html'
 
     def get(self, request):
-        latest_polling_stations = PollingStation.objects.all().order_by("-modified")
-        polling_station_votes = list()
-        for ps in latest_polling_stations:
+        all_polling_stations_votes = 0
+        number_of_polling_stations = 0
+        all_polling_stations = PollingStation.objects.all().order_by("-modified")
+        polling_station_votes_list = list()
+        for ps in all_polling_stations:
             ps_list = []
             votes = []
-            total_votes = 0
+            polling_station_votes = 0
             psvs = PollingStationVotes.objects.filter(polling_station=ps)
             if psvs.exists():
+                number_of_polling_stations = number_of_polling_stations + 1
                 ps_list.append(get_urdu_polling_station_name(ps.name))
 
                 votes.append(psvs.get(candidate__sign="lion.png").votes)
@@ -177,19 +183,22 @@ class PollingStationView(APIView):
                 votes.append(psvs.get(candidate__sign="cup.png").votes)
                 votes.append(psvs.get(candidate__sign="crane.png").votes)
                 if votes:
-                    total_votes = sum(votes)
+                    polling_station_votes = sum(votes)
                 max_vote = max(votes)
                 for index, vote in enumerate(votes):
                     if max_vote == vote:
                         ps_list.append("{}***".format(str(vote)))
                     else:
                         ps_list.append(str(vote))
-                ps_list.append(total_votes)
-                polling_station_votes.append(ps_list)
+                all_polling_stations_votes = all_polling_stations_votes + polling_station_votes
+                ps_list.append(polling_station_votes)
+                polling_station_votes_list.append(ps_list)
 
         return Response(
             {
-                'polling_station_votes': polling_station_votes
+                'total_votes': all_polling_stations_votes,
+                'polling_station_count': number_of_polling_stations,
+                'polling_station_votes': polling_station_votes_list
             }
         )
 
