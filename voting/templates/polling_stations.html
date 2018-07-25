@@ -76,7 +76,9 @@
 {% include "links.html" %}
 
 <div>
+    <h1>کل ووٹ = {{ total_votes }}</h1>
     <h1> PP-141 </h1>
+    <h1>کل پولنگ اسٹیشن  = {{ polling_station_count }}</h1>
 </div>
 
 <table border="1" cellspacing="0" cellpadding="0">
@@ -88,7 +90,7 @@
     <th>تنویر ناصر</th>
     <th>رانا وکیل</th>
     <th>نوشین بھٹی</th>
-    <th>Total Votes</th>
+    <th>کل ووٹ</th>
 
     {% for polling_station_vote in polling_station_votes %}
         <tr>
