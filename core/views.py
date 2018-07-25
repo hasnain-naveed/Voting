@@ -159,7 +159,7 @@ class PollingStationView(APIView):
     template_name = 'polling_stations.html'
 
     def get(self, request):
-        latest_polling_stations = PollingStation.objects.all().order_by("-modified")[:10]
+        latest_polling_stations = PollingStation.objects.all().order_by("-modified")
         polling_station_votes = list()
         for ps in latest_polling_stations:
             ps_list = []
@@ -175,6 +175,7 @@ class PollingStationView(APIView):
                 votes.append(psvs.get(candidate__sign="bowl.png").votes)
                 votes.append(psvs.get(candidate__sign="cup.png").votes)
                 votes.append(psvs.get(candidate__sign="crane.png").votes)
+                votes.append(sum(votes))
                 max_vote = max(votes)
                 for index, vote in enumerate(votes):
                     if max_vote == vote:
